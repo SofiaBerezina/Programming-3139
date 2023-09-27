@@ -1,1 +1,11 @@
-print(eval(input()))
+"""Module providing a function printing a result of math operations"""
+
+
+def calc(string):
+    """Function printing results of math operations"""
+    return eval(string)
+
+
+if __name__ == '__main__':
+    s = input("Input your mathematical expression: ")
+    print(calc(s))
