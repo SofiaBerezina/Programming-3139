@@ -3,7 +3,11 @@
 
 def calc(string):
     """Function printing results of math operations"""
-    return eval(string)
+    try:
+        res = eval(string)
+    except (ValueError, SyntaxError, ZeroDivisionError, NameError):
+        return 'Error'
+    return res
 
 
 if __name__ == '__main__':
