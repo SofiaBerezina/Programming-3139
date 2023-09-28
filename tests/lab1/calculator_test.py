@@ -25,5 +25,8 @@ class CalculatorTestCase(unittest.TestCase):
     def test_7(self):
         self.assertEqual(calc('3.5 + 4'), 7.5)
 
+    def test_8(self):
+        self.assertEqual(calc('3 / 0'), 'Error')
 
-
+    def test_9(self):
+        self.assertEqual(calc('fghdgf fdfgudf'), 'Error')
