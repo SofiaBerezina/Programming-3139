@@ -1,3 +1,4 @@
+import math
 import random
 import typing as tp
 
@@ -12,8 +13,19 @@ def is_prime(n: int) -> bool:
     >>> is_prime(8)
     False
     """
-    # PUT YOUR CODE HERE
-    pass
+    count = 0
+    if n == 0:
+        return False
+    elif n == 1 or n == 2:
+        return True
+    else:
+        for i in range(2, int(math.sqrt(n) + 1)):
+            if n % i == 0:
+                count += 1
+    if count:
+        return False
+    return True
+
 
 
 def gcd(a: int, b: int) -> int:
