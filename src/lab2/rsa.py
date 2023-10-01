@@ -54,8 +54,14 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     >>> multiplicative_inverse(7, 40)
     23
     """
-    # PUT YOUR CODE HERE
-    pass
+    def euclid(e, phi):
+        if phi == 0:
+            d, x, y = e, 0, 1
+            return d, x, y
+        else:
+            d, x, y = euclid(phi, e % phi)[0], euclid(phi, e % phi)[2], euclid(phi, e % phi)[1]
+            return d, x - y * (e // phi), y
+    return euclid(e, phi)[2] % phi
 
 
 def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
