@@ -9,6 +9,8 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     'LXFOPVEFRNHR'
     """
     ciphertext = ""
+    if not keyword.isalpha():
+        return 'Error'
     shifts = 'abcdefghijklmnopqrstuvwxyz'
     if len(keyword) < len(plaintext):
         for i in range(len(plaintext)):
@@ -42,6 +44,8 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     'ATTACKATDAWN'
     """
     plaintext = ""
+    if not keyword.isalpha():
+        return 'Error'
     shifts = 'abcdefghijklmnopqrstuvwxyz'
     if len(keyword) < len(ciphertext):
         for i in range(len(ciphertext)):

@@ -19,8 +19,8 @@ def is_prime(n: int) -> bool:
     elif n == 1 or n == 2:
         return True
     else:
-        for i in range(2, int(math.sqrt(n) + 1)):
-            if n % i == 0:
+        for i in range(2, int(math.sqrt(abs(n)) + 1)):
+            if abs(n) % i == 0:
                 count += 1
     if count:
         return False
@@ -61,7 +61,11 @@ def multiplicative_inverse(e: int, phi: int) -> int:
         else:
             d, x, y = euclid(phi, e % phi)[0], euclid(phi, e % phi)[2], euclid(phi, e % phi)[1]
             return d, x - y * (e // phi), y
-    return euclid(e, phi)[2] % phi
+    try:
+        return euclid(e, phi)[2] % phi
+    except ZeroDivisionError:
+        return 'Error'
+
 
 
 def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
