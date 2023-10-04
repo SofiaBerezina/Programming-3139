@@ -4,12 +4,12 @@
 def calc(string):
     """Function printing results of math operations"""
     try:
-        res = eval(string)
+        result = eval(string)
     except (ValueError, SyntaxError, ZeroDivisionError, NameError):
         return 'Error'
-    return res
+    return result
 
 
 if __name__ == '__main__':
-    s = input("Input your mathematical expression: ")
-    print(calc(s))
+    exp = input("Input your mathematical expression: ")
+    print(calc(exp))
