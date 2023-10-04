@@ -18,18 +18,18 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     digit_keyword = []
     for i in range(len(keyword)):
         digit_keyword.append(shifts.index(keyword[i].lower()))
-    s = []
+    result = []
     for i in range(len(plaintext)):
-        r = ''
+        word = ''
         for k in plaintext[i]:
             if k.isalpha() and k.islower():
-                r += chr((ord(k) - 97 + digit_keyword[i]) % 26 + 97)
+                word += chr((ord(k) - 97 + digit_keyword[i]) % 26 + 97)
             elif k.isalpha() and k.isupper():
-                r += chr((ord(k) - 65 + digit_keyword[i]) % 26 + 65)
+                word += chr((ord(k) - 65 + digit_keyword[i]) % 26 + 65)
             else:
-                r += k
-        s.append(r)
-    ciphertext = ''.join(s)
+                word += k
+        result.append(word)
+    ciphertext = ''.join(result)
     return ciphertext
 
 
@@ -53,16 +53,16 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     digit_keyword = []
     for i in range(len(keyword)):
         digit_keyword.append(shifts.index(keyword[i].lower()))
-    s = []
+    result = []
     for i in range(len(ciphertext)):
-        r = ''
+        word = ''
         for k in ciphertext[i]:
             if k.isalpha() and k.islower():
-                r += chr((ord(k) - 97 - digit_keyword[i]) % 26 + 97)
+                word += chr((ord(k) - 97 - digit_keyword[i]) % 26 + 97)
             elif k.isalpha() and k.isupper():
-                r += chr((ord(k) - 65 - digit_keyword[i]) % 26 + 65)
+                word += chr((ord(k) - 65 - digit_keyword[i]) % 26 + 65)
             else:
-                r += k
-        s.append(r)
-    plaintext = ''.join(s)
+                word += k
+        result.append(word)
+    plaintext = ''.join(result)
     return plaintext
