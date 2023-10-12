@@ -1,3 +1,4 @@
+import math
 import random
 import typing as tp
 
@@ -12,8 +13,18 @@ def is_prime(n: int) -> bool:
     >>> is_prime(8)
     False
     """
-    # PUT YOUR CODE HERE
-    pass
+    count = 0
+    if n == 0:
+        return False
+    elif n == 1 or n == 2:
+        return True
+    else:
+        for i in range(2, int(math.sqrt(abs(n)) + 1)):
+            if abs(n) % i == 0:
+                count += 1
+    if count:
+        return False
+    return True
 
 
 def gcd(a: int, b: int) -> int:
@@ -24,8 +35,16 @@ def gcd(a: int, b: int) -> int:
     >>> gcd(3, 7)
     1
     """
-    # PUT YOUR CODE HERE
-    pass
+    nod = 0
+    mx, mn = max(abs(a), abs(b)), min(abs(a), abs(b))
+    while mx != 0 and mn != 0:
+        mx, mn = max(abs(mx), abs(mn)), min(abs(mx), abs(mn))
+        if mx % mn == 0:
+            nod = mn
+            break
+        else:
+            mx %= mn
+    return nod
 
 
 def multiplicative_inverse(e: int, phi: int) -> int:
@@ -35,8 +54,18 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     >>> multiplicative_inverse(7, 40)
     23
     """
-    # PUT YOUR CODE HERE
-    pass
+    def euclid(e, phi):
+        if phi == 0:
+            d, x, y = e, 0, 1
+            return d, x, y
+        else:
+            d, x, y = euclid(phi, e % phi)[0], euclid(phi, e % phi)[2], euclid(phi, e % phi)[1]
+            return d, x - y * (e // phi), y
+    try:
+        return euclid(e, phi)[2] % phi
+    except ZeroDivisionError:
+        return 'Error'
+
 
 
 def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
@@ -46,10 +75,10 @@ def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[in
         raise ValueError("p and q cannot be equal")
 
     # n = pq
-    # PUT YOUR CODE HERE
+    n = p * q
 
     # phi = (p-1)(q-1)
-    # PUT YOUR CODE HERE
+    phi = (p - 1) * (q - 1)
 
     # Choose an integer e such that e and phi(n) are coprime
     e = random.randrange(1, phi)
