@@ -80,7 +80,19 @@ def get_block(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[s
     >>> get_block(grid, (8, 8))
     ['2', '8', '.', '.', '.', '5', '.', '7', '9']
     """
-    pass
+    if pos[0] <= 2:
+        rows = [0, 3]
+    elif pos[0] <= 5:
+        rows = [3, 6]
+    elif pos[0] <= 8:
+        rows = [6, 9]
+    if pos[1] <= 2:
+        cols = [0, 3]
+    elif pos[1] <= 5:
+        cols = [3, 6]
+    elif pos[1] <= 8:
+        cols = [6, 9]
+    return [grid[row][col] for row in range(rows[0], rows[1]) for col in range(cols[0], cols[1])]
 
 
 def find_empty_positions(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.Tuple[int, int]]:
