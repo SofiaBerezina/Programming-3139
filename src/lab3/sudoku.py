@@ -104,7 +104,10 @@ def find_empty_positions(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.Tuple[in
     >>> find_empty_positions([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']])
     (2, 0)
     """
-    pass
+    for row in range(len(grid)):
+        for col in range(len(grid[row])):
+            if grid[row][col] == '.':
+                return (row, col)
 
 
 def find_possible_values(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.Set[str]:
@@ -117,7 +120,15 @@ def find_possible_values(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -
     >>> values == {'2', '5', '9'}
     True
     """
-    pass
+    square = get_block(grid, pos)
+    column = get_col(grid, pos)
+    string = get_row(grid, pos)
+    values = set()
+    for i in range(1, 10):
+        if str(i) not in square and str(i) not in column and str(i) not in string:
+            values.add(str(i))
+    return values
+
 
 
 def solve(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.List[tp.List[str]]]:
