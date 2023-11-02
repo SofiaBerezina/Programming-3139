@@ -1,6 +1,6 @@
 import unittest
 
-import sudoku
+from src.lab3 import sudoku
 
 
 class SudokuTestCase(unittest.TestCase):
