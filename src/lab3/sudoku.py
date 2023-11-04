@@ -126,9 +126,9 @@ def find_possible_values(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -
     column = get_col(grid, pos)
     string = get_row(grid, pos)
     values = set()
-    for i in range(1, 10):
-        if str(i) not in square and str(i) not in column and str(i) not in string:
-            values.add(str(i))
+    for num in range(1, 10):
+        if str(num) not in square and str(num) not in column and str(num) not in string:
+            values.add(str(num))
     return values
 
 
@@ -148,9 +148,9 @@ def solve(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.List[tp.List[str]]]:
     if not empty_pos:
         return grid
     row, col = empty_pos
-    for i in range(1, 10):
-        if str(i) in find_possible_values(grid, empty_pos):
-            grid[row][col] = str(i)
+    for num in range(1, 10):
+        if str(num) in find_possible_values(grid, empty_pos):
+            grid[row][col] = str(num)
             if solve(grid) != 0:
                 return grid
             grid[row][col] = '.'
@@ -166,21 +166,21 @@ def check_solution(solution: tp.List[tp.List[str]]) -> bool:
     """
     count_goals = 0
     if_solved = 0
-    for i in range(9):
-        for j in range(9):
-            if solution[i][j].isdigit():
+    for row in range(9):
+        for col in range(9):
+            if solution[row][col].isdigit():
                 if_solved += 1
     if if_solved == 81:
-        for i in solution:
-            if len(i) == len(set(i)):
+        for row in solution:
+            if len(row) == len(set(row)):
                 count_goals += 1
-        for i in range(9):
-            check_cols = get_col(solution, (0, i))
+        for col in range(9):
+            check_cols = get_col(solution, (0, col))
             if len(check_cols) == len(set(check_cols)):
                 count_goals += 1
-        for i in range(0, 7, 3):
-            for j in range(0, 7, 3):
-                check_blocks = get_block(solution, (i, j))
+        for row in range(0, 7, 3):
+            for col in range(0, 7, 3):
+                check_blocks = get_block(solution, (row, col))
                 if len(check_blocks) == len(set(check_blocks)):
                     count_goals += 1
     if count_goals == 27:
@@ -209,7 +209,7 @@ def generate_sudoku(N: int) -> tp.List[tp.List[str]]:
     >>> check_solution(solution)
     True
     """
-    empty_sudoku = [['.' for i in range(9)] for j in range(9)]
+    empty_sudoku = [['.' for row in range(9)] for col in range(9)]
     solved_sudoku = solve(empty_sudoku)
     while sum(1 for string in solved_sudoku for cell in string if cell == '.') < (81 - N):
         row, col = random.randint(0, 8), random.randint(0, 8)
