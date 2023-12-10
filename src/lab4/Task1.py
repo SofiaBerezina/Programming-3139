@@ -47,4 +47,3 @@ users_file_path = 'users.txt'
 film_recommendation_system = FilmRecommendationSystem(films_file_path, users_file_path)
 user_input = '1'
 recommendation = film_recommendation_system.get_recommendation(user_input)
-print(recommendation)
