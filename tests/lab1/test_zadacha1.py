@@ -1,6 +1,7 @@
 import unittest
 from src.lab4.Task1 import FilmRecommendationSystem
 
+
 class TaskTestCase(unittest.TestCase):
     def setUp(self):
         self.films_file_path = 'films.txt'

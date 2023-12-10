@@ -1,11 +1,12 @@
 '''Recomendation system'''
 import collections
+import pathlib
 
 
 class FilmRecommendationSystem:
     def __init__(self, films_file, users_file):
-        self.films = self._load_films(films_file)
-        self.users = self._load_users(users_file)
+        self.films = self._load_films(pathlib.Path(films_file))
+        self.users = self._load_users(pathlib.Path(users_file))
 
     def _load_films(self, file_path):
         '''Make films in a dict'''
@@ -47,4 +48,3 @@ users_file_path = 'users.txt'
 film_recommendation_system = FilmRecommendationSystem(films_file_path, users_file_path)
 user_input = '1'
 recommendation = film_recommendation_system.get_recommendation(user_input)
-print(recommendation)
