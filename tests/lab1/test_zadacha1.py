@@ -1,11 +1,10 @@
 import unittest
 from src.lab4.Task1 import FilmRecommendationSystem
 
-
 class TaskTestCase(unittest.TestCase):
     def setUp(self):
-        self.films_file_path = '/Users/sofaberezina/Programming-3139/src/lab4/films'
-        self.users_file_path = '/Users/sofaberezina/Programming-3139/src/lab4/users'
+        self.films_file_path = 'films.txt'
+        self.users_file_path = 'users.txt'
         self.film_recommendation_system = FilmRecommendationSystem(self.films_file_path, self.users_file_path)
 
     def test_get_recommendation_1(self):
