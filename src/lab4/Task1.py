@@ -41,10 +41,3 @@ class FilmRecommendationSystem:
         except Exception as e:
             pass
         return 'Recommended films were not found'
-
-
-films_file_path = 'films.txt'
-users_file_path = 'users.txt'
-film_recommendation_system = FilmRecommendationSystem(films_file_path, users_file_path)
-user_input = '1'
-recommendation = film_recommendation_system.get_recommendation(user_input)
